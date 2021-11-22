@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <label name="ssn">SSN:</label>
+        <input id="ssn" name="ssn" type="number" placeholder="Enter SSN:" required><br>
+
+        <label name="name">Name:</label>
+        <input id="name" name="name" type="text" placeholder="Enter Name:" required><br>
+        
+        <label name="email">Email:</label>
+        <input id="email" name="email" type="email" placeholder="Enter Email:" required><br>
+
+        <label name="password">Password:</label>
+        <input id="password" name="password" type="password" placeholder="Enter Password:" required><br>
+        
+        <label name="dob">DOB:</label>
+        <input id="dob" name="dob" type="date" placeholder="Enter DOB:" required><br>
+
+        <label name="city">Current City:</label>
+        <input id="city" name="city" type="text" placeholder="Enter Current City:" required><br>
+        
+        <button name="submit" type="submit">Submit</button>
+    </form>
+</body>
+</html>
