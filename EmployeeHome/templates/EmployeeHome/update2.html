@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+    <title>Update info</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+
+        <label name="current_city">Current City:</label>
+        <input id="current_city" name="current_city" type="text" placeholder="Enter Current City:" required><br>
+        
+        <button name="submit" type="submit">Submit</button>
+    </form>
+</body>
+</html>

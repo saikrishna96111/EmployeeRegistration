@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Page</title>
+    </head>
+    <script>
+        function testfunc()
+        {
+            document.location.href='update2';
+        }
+        function testfunc2()
+        {
+            document.location.href='delete';
+        }
+        </script>
+    <body>
+        <label name="ssn">SSN:{{ssn}}</label>
+        
+        <label name="name">Name:{{name}}</label>
+
+        <label name="email">Email:{{email}}</label>
+
+        <label name="dob">DOB:{{dob}}</label>
+
+        <label name="city">City:{{city}}</label>
+        
+    <button type="submit" name="update" onclick=testfunc()>Update</button>
+    
+    <button type="submit" name="delete" onclick=testfunc2()>Delete</button>
+    <a href="http://127.0.0.1:8000/login/">Logout</a>
+    <!-- <button type="submit" name="logout" href="http://127.0.0.1:8000/register/">Log Out</button>
+     -->
+    </body>
+</html>

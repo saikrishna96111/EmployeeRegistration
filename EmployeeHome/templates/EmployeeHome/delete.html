@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Page</title>
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+        <h1>Are you sure?</h1>
+        <button type="submit" name="submit">Yes</button>
+        <a href="http://127.0.0.1:8000/login/">No</a>
+        </form>
+    </body>
+</html>
