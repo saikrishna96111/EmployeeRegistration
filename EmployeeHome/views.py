@@ -1,41 +1,57 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect,response
 from .models import Employeedb
+from django.contrib import messages
 import EmployeeHome
-
+import js2py
 
 # Create your views here.
 def register(request):
-    if(request.method=='POST'):
-        ssn=request.POST.get('ssn')
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-        dob=request.POST.get('dob')
-        city=request.POST.get('city')
-        user = Employeedb.objects.create(ssn=ssn, name=name, email=email, password=password, dob=dob, city=city)
-        user.save()
-        print("ssn-{}".format(ssn))
+    try:
+        if(request.method=='POST'):
+            ssn=request.POST.get('ssn')
+            name=request.POST.get('name')
+            email=request.POST.get('email')
+            password=request.POST.get('password')
+            dob=request.POST.get('dob')
+            city=request.POST.get('city')
+            user = Employeedb.objects.create(ssn=ssn, name=name, email=email, password=password, dob=dob, city=city)
+            user.save()
+            print("ssn-{}".format(ssn))
+            messages.info(request,'Registered Successfully')
+    except:
+        print("SSN is already registered.")
+        messages.info(request, 'SSN is already registered!!')
+        return HttpResponseRedirect('/register')
+
+#        code=window.alert('SSN is already registered.')
+ #       x=js2py.eval_js(alert('SSN is already registered.'))
+ #       print(x)
     return render(request, 'EmployeeHome/register.html')
 
 def login(request):
     global login_email
-    if(request.method=='POST'):
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-        login_user=Employeedb.objects.get(email=email, password=password)
-        if(login_user):
-            ssn=login_user.ssn
-            email=login_user.email
-            login_email=email
-            name=login_user.name
-            dob=login_user.dob
-            city=login_user.city
-            context={"ssn":ssn, "name":name,"email":email,"dob":dob,"city":city}
-            return render(request, 'EmployeeHome/update.html',context)
-    else:
-        return render(request,'EmployeeHome/login.html')
-
+    try:
+        if(request.method=='POST'):
+            email=request.POST.get('email')
+            password=request.POST.get('password')
+            login_user=Employeedb.objects.get(email=email, password=password)
+            if(login_user):
+                ssn=login_user.ssn
+                email=login_user.email
+                login_email=email
+                name=login_user.name
+                dob=login_user.dob
+                city=login_user.city
+                context={"ssn":ssn, "name":name,"email":email,"dob":dob,"city":city}
+                return render(request, 'EmployeeHome/update.html',context)
+        else:
+            return render(request,'EmployeeHome/login.html')
+    except:
+        print("Invalid Credentials")
+        messages.info(request,"Invalid Credentials")
+        return HttpResponseRedirect('/login')
+        
 def update(request):
     return render(request, 'EmployeeHome/update.html')
 

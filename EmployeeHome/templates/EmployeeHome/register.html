@@ -1,29 +1,82 @@
 <!DOCTYPE html>
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Register</title>
-</head>
+    <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
+  </head>
+  <style>
+      body{
+        background:rgb(8, 183, 226);
+      }
+      label{
+          text-emphasis-color: white;
+      }
+      #push{
+          padding-top: 80px;
+      }
+      #but{
+          margin-left: 50px;
+          padding: 10px;
+      }
+      p{
+          font-size: 50px;
+          text-align: center;
+      }
+  </style>
+
 <body>
-    <form method="POST">
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+           <i><p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p><i>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="push" class="container d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper ">
+    <form id="form" method="POST">
         {% csrf_token %}
+        <div class="form-group">
         <label name="ssn">SSN:</label>
-        <input id="ssn" name="ssn" type="number" placeholder="Enter SSN:" required><br>
+        <input id="ssn" name="ssn" class="form-control" type="number" placeholder="Enter SSN:" required><br>
+       </div>
 
+        <div class="form-group">
         <label name="name">Name:</label>
-        <input id="name" name="name" type="text" placeholder="Enter Name:" required><br>
-        
+        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Name:" required><br>
+    </div>
+
+        <div class="form-group">
         <label name="email">Email:</label>
-        <input id="email" name="email" type="email" placeholder="Enter Email:" required><br>
+        <input id="email" name="email" class="form-control" type="email" placeholder="Enter Email:" required><br>
+    </div>
 
+        <div class="form-group">
         <label name="password">Password:</label>
-        <input id="password" name="password" type="password" placeholder="Enter Password:" required><br>
+        <input id="password" name="password" class="form-control" type="password" placeholder="Enter Password:" required><br>
+    </div>
         
+    <div class="form-group">
         <label name="dob">DOB:</label>
-        <input id="dob" name="dob" type="date" placeholder="Enter DOB:" required><br>
+        <input id="dob" name="dob" type="date" class="form-control" placeholder="Enter DOB:" required><br>
+    </div>
 
+        <div class="form-group">
         <label name="city">Current City:</label>
-        <input id="city" name="city" type="text" placeholder="Enter Current City:" required><br>
-        
-        <button name="submit" type="submit">Submit</button>
+        <input id="city" name="city" type="text" class="form-control" placeholder="Enter Current City:" required><br>
+    </div>
+    
+        <div class="form-group">
+        <button id="but" name="submit" class="btn btn-primary" type="submit">Register</button>
+    </div>
     </form>
+</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

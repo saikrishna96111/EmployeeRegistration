@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Login Page</title>
-    </head>
-    <body>
+        <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
+      </head>
+      <style>
+          body{
+            background:rgb(8, 183, 226);
+          }
+          label{
+              text-emphasis-color: white;
+          }
+          #push{
+              padding-top: 200px;
+          }
+          #but{
+              margin-left: 50px;
+              padding: 10px;
+          }
+          /* #box{
+margin:0 auto; 
+width:600px;
+padding:20px;
+/* background: rgb(197, 200, 206); 
 
-        <form method="POST">
-            {% csrf_token %}
-            <label name="email">Email:</label>
-            <input id="email" name="email" type="email" placeholder="Enter Email:" required><br>
+border:2px solid #333;
+} */
+    p{
+          font-size: 50px;
+          text-align: center;
+      }
+      </style>
     
+    <body>
+        <!-- <div class="container align-self-center d-flex justify-content-center align-middle"> -->
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+           <i><p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p><i>
+        {% endfor %}
+        </ul>
+    {% endif %}
+        <div id="push" class="container d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper ">
+        <div id="box">
+            <form id="form" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+            <label class="email">Email:</label>
+            <input id="email" name="email" type="email" class="form-control" placeholder="Enter Email:" required><br>
+        </div>
+        <div class="form-group">
             <label name="password">Password:</label>
-            <input id="password" name="password" type="password" placeholder="Enter Password:" required><br>
-            
-            <button name="submit" type="submit">Submit</button>
+            <input id="password" name="password" class="form-control" type="password" placeholder="Enter Password:" required><br>
+        </div>
+        <div>
+            <button name="submit" id="but" type="submit" class="btn btn-primary">Submit</button>
+        </div>
         </form>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </div>
+    </div>
     </body>
 </html>
