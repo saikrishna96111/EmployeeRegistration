@@ -1,5 +1,6 @@
 from django.db import models
 
+# Create Employee with necessary parameters. 
 # Create your models here.
 class Employeedb(models.Model):
     ssn=models.IntegerField(unique=True,max_length=100,null=True)

@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+
+#directs to required location
 urlpatterns = [
     path('register/', views.register, name='register-home'),
     path('login/', views.login, name='login-home'),

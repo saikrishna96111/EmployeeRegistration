@@ -6,6 +6,7 @@ import EmployeeHome
 import js2py
 
 # Create your views here.
+# To register the employee after the data is entered.
 def register(request):
     try:
         if(request.method=='POST'):
@@ -18,24 +19,21 @@ def register(request):
             user = Employeedb.objects.create(ssn=ssn, name=name, email=email, password=password, dob=dob, city=city)
             user.save()
             print("ssn-{}".format(ssn))
-            messages.info(request,'Registered Successfully')
+            messages.info(request,'Registered Successfully')#message will be displayed if the registration is successful.
     except:
         print("SSN is already registered.")
-        messages.info(request, 'SSN is already registered!!')
+        messages.info(request, 'SSN is already registered!!')#message will be displayed if another employee has already registered with the same ssn.
         return HttpResponseRedirect('/register')
-
-#        code=window.alert('SSN is already registered.')
- #       x=js2py.eval_js(alert('SSN is already registered.'))
- #       print(x)
     return render(request, 'EmployeeHome/register.html')
 
+#To login after registration
 def login(request):
-    global login_email
+    global login_email  #Accessing the same email after employee logs in for other operations.
     try:
         if(request.method=='POST'):
             email=request.POST.get('email')
             password=request.POST.get('password')
-            login_user=Employeedb.objects.get(email=email, password=password)
+            login_user=Employeedb.objects.get(email=email, password=password)#checks the data entered with the data in database.
             if(login_user):
                 ssn=login_user.ssn
                 email=login_user.email
@@ -44,17 +42,18 @@ def login(request):
                 dob=login_user.dob
                 city=login_user.city
                 context={"ssn":ssn, "name":name,"email":email,"dob":dob,"city":city}
-                return render(request, 'EmployeeHome/update.html',context)
+                return render(request, 'EmployeeHome/update.html',context)#details will be shown to the employees.
         else:
             return render(request,'EmployeeHome/login.html')
     except:
         print("Invalid Credentials")
         messages.info(request,"Invalid Credentials")
         return HttpResponseRedirect('/login')
-        
+#just show the information        
 def update(request):
     return render(request, 'EmployeeHome/update.html')
 
+#handles updation of the current city.
 def update2(request):
     if(request.method=="POST"):
         current_city=request.POST.get('current_city')
@@ -69,9 +68,12 @@ def update2(request):
         return render(request, 'EmployeeHome/update.html',context)
     return render(request,"EmployeeHome/update2.html")
 
+#Delete account
 def delete(request):
     if(request.method=="POST"):
         Employeedb.objects.filter(email=login_email).delete()
         print("Account Deleted")
-        return redirect('/register')
+        messages.info(request, 'Account Deleted')
+        return HttpResponseRedirect('/register')
+        #return redirect('/register')
     return render(request,"EmployeeHome/delete.html")
