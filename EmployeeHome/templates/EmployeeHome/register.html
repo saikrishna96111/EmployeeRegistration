@@ -1,21 +1,61 @@
 <!DOCTYPE html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Register</title>
     <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
-  </head>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
+</head>
+
   <style>
+
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #000000; /* Red */
+  color: rgb(255, 255, 255);
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: rgb(255, 254, 254);
+}
       body{
-        background:rgb(8, 183, 226);
-      }
-      label{
-          text-emphasis-color: white;
+        /* background:rgb(8, 183, 226); */
+        background: url("/static/img/oracle.jpg") no-repeat;
+          /* Full height */
+  height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+        /* background: url(./oracle_logo.png);
+        background: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ficon-icons.com%2Ficon%2Foracle-logo%2F145005&psig=AOvVaw0f2CCXXH3I82fonql2XpSj&ust=1637990922708000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCICLxOyltfQCFQAAAAAdAAAAABAJ"; */
       }
       #push{
-          padding-top: 80px;
+          padding-top: 30px;
+          width:220px; /* or whatever width you want. */
+   max-width:220px; /* or whatever width you want. */
+   display: inline-block;
       }
       #but{
           margin-left: 50px;
@@ -25,18 +65,34 @@
           font-size: 50px;
           text-align: center;
       }
+      h1{
+          text-align: center;
+          color:white;
+      }
+    label{
+        color: white;
+    }
   </style>
 
+
 <body>
+    {% load static %}
     {% if messages %}
-        <ul class="messages">
         {% for message in messages %}
-           <i><p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p><i>
+            <div class="alert">
+                {{ message }}
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+              </div>
         {% endfor %}
-        </ul>
     {% endif %}
+              
+    <h1>Registration Page</h1>
+    <div id='myform_errorloc' class='error_strings'></div>
+
     <div id="push" class="container d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper ">
-    <form id="form" method="POST">
+    
+        <form id="myform" class="myform" name="myform" method="POST">
+        
         {% csrf_token %}
         <div class="form-group">
         <label name="ssn">SSN:</label>
@@ -44,7 +100,7 @@
        </div>
 
         <div class="form-group">
-        <label name="name">Name:</label>
+        <label for="name" name="name">Name:</label>
         <input id="name" name="name" class="form-control" type="text" placeholder="Enter Name:" required><br>
     </div>
 
@@ -52,19 +108,24 @@
         <label name="email">Email:</label>
         <input id="email" name="email" class="form-control" type="email" placeholder="Enter Email:" required><br>
     </div>
-
+    <!-- Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters -->
         <div class="form-group">
         <label name="password">Password:</label>
-        <input id="password" name="password" class="form-control" type="password" placeholder="Enter Password:" required><br>
+        <input id="password" name="password" class="form-control" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one uppercase, one lowercase letter and 8 or more characters" placeholder="Enter Password:" required><br>
     </div>
         
+    <div class="form-group">
+        <label name="confirm_password">Confirm Password:</label>
+        <input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Confirm Password:" required><br>
+    </div>
+
     <div class="form-group">
         <label name="dob">DOB:</label>
         <input id="dob" name="dob" type="date" class="form-control" placeholder="Enter DOB:" required><br>
     </div>
 
         <div class="form-group">
-        <label name="city">Current City:</label>
+        <label for="city" name="city">Current City:</label>
         <input id="city" name="city" type="text" class="form-control" placeholder="Enter Current City:" required><br>
     </div>
     
@@ -72,12 +133,23 @@
         <button id="but" name="submit" class="btn btn-primary" type="submit">Register</button>
     </div>
     <div>
-        <small>Already registered?</small>
+        <small style="color:white">Already registered?</small>
         <a href="http://127.0.0.1:8000/login/">Sign in</a>
         </div>
+        <br>
     </form>
+    <script>$("#myform").validate()</script>
+    <!-- <script type="text/javascript">
+
+        var frmvalidator  = new Validator("myform");
+
+frmvalidator.addValidation("name","req","Please enter your First Name");
+frmvalidator.addValidation("city","req","Please enter your city");
+
+
+</script> -->
 </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         

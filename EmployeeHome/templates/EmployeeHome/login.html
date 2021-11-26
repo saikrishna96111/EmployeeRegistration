@@ -8,8 +8,41 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
       </head>
       <style>
+        .alert {
+  padding: 20px;
+  background-color: #000000; /* Red */
+  color: rgb(255, 255, 255);
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: rgb(255, 254, 254);
+}
+label{
+        color: white;
+    }
           body{
-            background:rgb(8, 183, 226);
+            background: url("/static/img/oracle.jpg") no-repeat;
+          /* Full height */
+  height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
           }
           label{
               text-emphasis-color: white;
@@ -33,17 +66,23 @@ border:2px solid #333;
           font-size: 50px;
           text-align: center;
       }
+      h1{
+          text-align: center;
+          color:white;
+      }
       </style>
     
     <body>
         <!-- <div class="container align-self-center d-flex justify-content-center align-middle"> -->
-    {% if messages %}
-        <ul class="messages">
-        {% for message in messages %}
-           <i><p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p><i>
-        {% endfor %}
-        </ul>
-    {% endif %}
+     {% if messages %}
+            {% for message in messages %}
+                <div class="alert">
+                    {{ message }}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                  </div>
+            {% endfor %}
+        {% endif %}
+        <h1>Login Page</h1>
         <div id="push" class="container d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper ">
         <div id="box">
             <form id="form" method="POST">
@@ -58,7 +97,7 @@ border:2px solid #333;
         </div>
         <div>
             <button name="submit" id="but" type="submit" class="btn btn-primary">Submit</button>
-           
+           <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
      
         </form>

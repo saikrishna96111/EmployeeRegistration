@@ -8,8 +8,18 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <style>
+          label{
+        color: white;
+    }
         body{
-      background:rgb(8, 183, 226);
+            background: url("/static/img/oracle.jpg") no-repeat;
+          /* Full height */
+  height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
     }
      #push{
         padding-top: 150px;
@@ -18,15 +28,22 @@
         margin-left: 50px;
         padding: 10px;
     }
+    h1{
+          text-align: center;
+          color:white;
+      }
   </style>
     <body>
+        <h1>Delete Page</h1>
         <div id="push" class="container d-flex align-items-center justify-content-center ">
             <form method="POST">
                 {% csrf_token %}
+                <br><br><br>
                 <div class="form-group"><h1>Are you sure?</h1><br><div>
                     <div>
                             <button class="btn btn-primary" id="but" type="submit" name="submit">Yes</button>
                     <a class="btn btn-primary" id="but" href="http://127.0.0.1:8000/login/">NO</a>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>
             </form>
         </div>

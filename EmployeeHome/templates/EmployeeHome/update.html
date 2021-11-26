@@ -1,73 +1,55 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
-        <title>Update Page</title>
-    </head>
-    <style>
-        .box1{
-            padding-left: 100px;
-        }
-        #push{
-          padding-top: 80px;
-          padding-left: 600px;
-          font-size: larger;
-        }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Update info</title>
+</head>
+<style>
+          body{
+            background: url("/static/img/oracle.jpg") no-repeat;
+          /* Full height */
+  height: 150%;
 
-        body{
-        background:rgb(8, 183, 226);
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+        /* background:rgb(8, 183, 226); */
       }
+      #push{
+          padding-top: 150px;
+      }
+      #but{
+          margin-left: 50px;
+          padding: 10px;
+      }
+      h1{
+          text-align: center;
+          color:white;
+      }
+      label{
+        color: white;
+    }
     </style>
-    <script>
-        function testfunc()
-        {
-            document.location.href='update2';
-        }
-        function testfunc2()
-        {
-            document.location.href='delete';
-        }
-        </script>
-    <body>
-        <div id="push">
-            <div class="row">
-                <label class="col-xs-12 col-md-12" name="ssn">SSN : {{ssn}}</label><br>
-            </div>
-
-        <div class="row">
-        <label class="col-xs-12 col-md-12" name="name">Name : {{name}}</label><br>
+<body>
+    <h1>Update Information Page</h1>
+    <div id="push" class="container d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper ">
+    <form method="POST">
+        {% csrf_token %}
+       
+        <div class="form-group">
+            <br><br><br>
+        <label name="current_city">Current City:</label>
+        <input id="current_city" name="current_city" class="form-control" type="text" placeholder="Enter Current City:" required><br>
     </div>
 
-        <div class="row">
-        <label class="col-xs-12 col-md-12" name="email">Email : {{email}}</label><br>
-    </div>
-
-        <div class="row">
-        <label class="col-xs-12 col-md-12" name="dob">DOB : {{dob}}</label><br>
-    </div>
-
-        <div class="row">
-        <label class="col-xs-12 col-md-12" name="city">City : {{city}}</label><br>
-    </div>
-
-    <button class="btn btn-primary" type="submit" name="update" onclick=testfunc()>Update</button>
-    
-    <!-- <button class="btn btn-primary" type="submit" name="delete" onclick=testfunc2()>Delete</button> -->
-    <a class="btn btn-primary" href="http://127.0.0.1:8000/login/delete/">Delete</a>
-    <a class="btn btn-primary" href="http://127.0.0.1:8000/login/">Logout</a>
-    <!-- <button type="submit" name="logout" href="http://127.0.0.1:8000/register/">Log Out</button>
-     -->
-    </div>
-    </div>
-
+        <div class="form-group">
+        <button class="btn btn-primary" id="but" name="submit" type="submit">Submit</button>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </form>
 </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+</body>
 </html>
