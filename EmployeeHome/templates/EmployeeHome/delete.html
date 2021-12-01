@@ -9,10 +9,10 @@
     </head>
     <style>
           label{
-        color: white;
+        color: black;
     }
         body{
-            background: url("/static/img/oracle.jpg") no-repeat;
+            /* background: url("/static/img/oracle.jpg") no-repeat; */
           /* Full height */
   height: 100%;
 
@@ -22,28 +22,31 @@ background-repeat: no-repeat;
 background-size: 100% 100%;
     }
      #push{
-        padding-top: 150px;
+        padding-top: 10px;
     } 
     #but{
-        margin-left: 50px;
+        margin-left: 30px;
         padding: 10px;
     }
     h1{
           text-align: center;
-          color:white;
+            padding-top: 30px;
+          color:black;
       }
   </style>
     <body>
         <h1>Delete Page</h1>
         <div id="push" class="container d-flex align-items-center justify-content-center ">
+           
             <form method="POST">
                 {% csrf_token %}
                 <br><br><br>
-                <div class="form-group"><h1>Are you sure?</h1><br><div>
+                <div class="form-group">
+                    <h2>Are you sure?</h2><br><div>
                     <div>
                             <button class="btn btn-primary" id="but" type="submit" name="submit">Yes</button>
                     <a class="btn btn-primary" id="but" href="http://127.0.0.1:8000/login/">NO</a>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    
                 </div>
             </form>
         </div>

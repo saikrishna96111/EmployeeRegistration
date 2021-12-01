@@ -1,20 +1,86 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Register</title>
-    <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+        <title>test</title>
+    </head>
+    <style>
 
-</head>
+.errorMessages {
+    display: none;
+    list-style-type: disc;
+    margin: 0 130px 50px 0px;
+    justify-content: center;
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border: 2px solid #EED3D7;
+    border-radius: 4px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+} 
 
-  <style>
 
+.form-control {
+  position: relative;
+  width: 280px;
+  height: 50px;
+  margin-top:25px;
+  margin-bottom: 25px;
+}
+.form-control input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  height: 100%;
+  padding: 0 15px;
+  transition: 0.4s;
+}
 
-/* The alert message box */
+.form-control input:valid + label {
+  top: -0.45rem;
+  left: 10px;
+  font-size: 0.9rem;
+  z-index: 100;
+  width: auto;
+  height: 0.9rem;
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+input:not(:focus) {
+  color: rgba(1, 1, 1, 1);
+}
+
+.form-control input:focus + label {
+  top: -0.45rem;
+  left: 10px;
+  font-size: 0.9rem;
+  z-index: 100;
+  width: auto;
+  height: 0.9rem;
+  padding: 0 10px;
+  color: #3484f0;
+}
+.form-control label {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  /* padding-left: 15px; */
+  width: 90%;
+  height: 100%;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  pointer-events: none;
+}
+
 .alert {
   padding: 20px;
   background-color: #000000; /* Red */
@@ -38,117 +104,171 @@
 .closebtn:hover {
   color: rgb(255, 254, 254);
 }
+
       body{
         /* background:rgb(8, 183, 226); */
-        background: url("/static/img/oracle.jpg") no-repeat;
+        
           /* Full height */
   height: 100%;
 
 /* Center and scale the image nicely */
-background-position: center;
+background-position: left;
 background-repeat: no-repeat;
-background-size: 100% 100%;
+background-size: 60% 50%;
         /* background: url(./oracle_logo.png);
         background: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ficon-icons.com%2Ficon%2Foracle-logo%2F145005&psig=AOvVaw0f2CCXXH3I82fonql2XpSj&ust=1637990922708000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCICLxOyltfQCFQAAAAAdAAAAABAJ"; */
       }
+    
       #push{
-          padding-top: 30px;
-          width:220px; /* or whatever width you want. */
-   max-width:220px; /* or whatever width you want. */
-   display: inline-block;
-      }
+            /* padding-left: 800px; */
+            padding-top: 10px;
+            padding-right: 20px;
+            width: 30%;
+      } 
       #but{
-          margin-left: 50px;
+
+          margin-left: 90px;
           padding: 10px;
       }
       p{
           font-size: 50px;
           text-align: center;
       }
-      h1{
-          text-align: center;
-          color:white;
+      h2{
+        justify-content: center;
+          color:black;
+          padding-top:30px;
+          padding-left: 10px;
+          margin-bottom: 50px;
       }
-    label{
-        color: white;
+      small{
+          margin-top: 50px;
+        margin-left: 50px;
+      }
+      .child1{
+                float:left; 
+                /* background:Red; */
+                width:25%;
+                height:280px;
+            }
+          
+            .child2{
+                float:right;
+                /* background:blue; */
+                width:25%;
+                height:280px;
+            }
+            img{
+      justify-content: left;
+      padding-left: 100px;
+      padding-top: 200px;
+      width: 200%;
     }
-  </style>
+</style>
 
-
+    
 <body>
-    {% load static %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert">
-                {{ message }}
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-              </div>
-        {% endfor %}
-    {% endif %}
-              
-    <h1>Registration Page</h1>
-    <div id='myform_errorloc' class='error_strings'></div>
+  {% load static %}
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert">
+              {{ message }}
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            </div>
+      {% endfor %}
+  {% endif %}
+            
+  
+  <!-- <div id='myform_errorloc' class='error_strings'></div> -->
+  <!-- d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper -->
+  <div class="child1"><img src="/static/img/oracle4.jpeg" alt="image"></div>
 
-    <div id="push" class="container d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper ">
-    
-        <form id="myform" class="myform" name="myform" method="POST">
-        
+  <div id="push" class="child2">
+
+    <h2>Registration Page</h2>
+      <form id="myform" class="myform" name="myform" method="POST">
+      
         {% csrf_token %}
-        <div class="form-group">
-        <label name="ssn">SSN:</label>
-        <input id="ssn" name="ssn" class="form-control" type="number" placeholder="Enter SSN:" required><br>
-       </div>
+<ul class="errorMessages"></ul>
+  <div class="form-control">
+    <input required type="number" id="ssn" title="Please enter SSN" name="ssn" />
+    <label for="ssn">Enter SSN</label>
+     <!-- <div class="border-around"></div>  -->
+  </div>
+  
+  <div class="form-control">
+    <input required type="text" name="name" title="Please enter Name" id="name" />
+    <label for="name">Enter Name</label>
+     <!-- <div class="border-around"></div>  -->
+  </div>
 
-        <div class="form-group">
-        <label for="name" name="name">Name:</label>
-        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Name:" required><br>
-    </div>
+  <div class="form-control">
+    <input required type="email" title="Please enter valid email id" name="email" id="email"/>
+    <label>Enter Email</label>
+     <!-- <div class="border-around"></div>  -->
+  </div>
 
-        <div class="form-group">
-        <label name="email">Email:</label>
-        <input id="email" name="email" class="form-control" type="email" placeholder="Enter Email:" required><br>
-    </div>
-    <!-- Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters -->
-        <div class="form-group">
-        <label name="password">Password:</label>
-        <input id="password" name="password" class="form-control" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one uppercase, one lowercase letter and 8 or more characters" placeholder="Enter Password:" required><br>
-    </div>
-        
-    <div class="form-group">
-        <label name="confirm_password">Confirm Password:</label>
-        <input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Confirm Password:" required><br>
-    </div>
+  <div class="form-control">
+    <input required type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one uppercase, one lowercase letter and 8 or more characters" id="password"/>
+    <label>Enter Password</label>
+     <!-- <div class="border-around"></div>  -->
+  </div> 
+  
+  <div class="form-control">
+    <input required type="password" name="cpassword" title="Please confirm password" id="cpassword"/>
+    <label>Confirm Password</label>
+     <!-- <div class="border-around"></div>  -->
+  </div> 
 
-    <div class="form-group">
-        <label name="dob">DOB:</label>
-        <input id="dob" name="dob" type="date" class="form-control" placeholder="Enter DOB:" required><br>
-    </div>
+  <div class="form-control">
+    <input required type="date" name="dob" title="Please enter Date Of Birth" id="dob"/>
+    <label>Enter DOB</label>
+     <!-- <div class="border-around"></div>  -->
+  </div>
+  
 
-        <div class="form-group">
-        <label for="city" name="city">Current City:</label>
-        <input id="city" name="city" type="text" class="form-control" placeholder="Enter Current City:" required><br>
-    </div>
-    
-        <div class="form-group">
-        <button id="but" name="submit" class="btn btn-primary" type="submit">Register</button>
-    </div>
-    <div>
-        <small style="color:white">Already registered?</small>
-        <a href="http://127.0.0.1:8000/login/">Sign in</a>
-        </div>
-        <br>
-    </form>
-    <script>$("#myform").validate()</script>
-    <!-- <script type="text/javascript">
-
-        var frmvalidator  = new Validator("myform");
-
-frmvalidator.addValidation("name","req","Please enter your First Name");
-frmvalidator.addValidation("city","req","Please enter your city");
+  <div class="form-control">
+    <input required type="text" name="city" title="Please enter City" id="city"/>
+    <label>Enter City</label>
+     <!-- <div class="border-around"></div>  -->
+  </div>
 
 
-</script> -->
+  <button id="but" name="submit" class="btn btn-primary" type="submit">Register</button><br><br>
+  
+    <small style="color:black">Already registered?</small>
+    <a href="http://127.0.0.1:8000/login/">Sign in</a><br><br><br><br><br>
+  
+</form>
+<script>
+    $(function() {
+    var createAllErrors = function () {
+       var form = $(".myform");
+       var errorList = $('ul.errorMessages', form);
+
+       var showAllErrorMessages = function () {
+       errorList.empty();
+
+       form.find(':invalid').each(function () {
+            var label = $(this).attr('name');
+                var message = $(this).validationMessage || $(this).attr('title');
+                errorList
+                    .show()
+                    .append('<li><span>' + label + ': ' + '</span>' + message + '</li>');
+           
+            });
+       };
+       $('input[type=submit], button', form).on('click', showAllErrorMessages);
+    };
+    $('form').each(createAllErrors);
+});
+
+</script>
+
 </div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

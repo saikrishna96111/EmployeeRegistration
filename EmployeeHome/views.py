@@ -14,21 +14,20 @@ def register(request):
             name=request.POST.get('name')
             email=request.POST.get('email')
             password=request.POST.get('password')
-            cpassword=request.POST.get('confirm_password')
+            cpassword=request.POST.get('cpassword')
             dob=request.POST.get('dob')
             city=request.POST.get('city')
             if(re.match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",password)):
                 if(password==cpassword):
                     user = Employeedb.objects.create(ssn=ssn, name=name, email=email, password=password, dob=dob, city=city)
                     user.save()
-                    messages.info(request,"Registered Successfully")#message will be displayed if the registration is successful.
+                    messages.info(request,"User has been registered successfully.")#message will be displayed if the registration is successful.
                 else:
-                    messages.info(request, "Passwords did not match. Try again!")
+                    messages.info(request, "The passwords did not match. Please try again.")
             else:
-                messages.info(request, "Password did not match the specified criteria. Try again!")
+                messages.info(request, "Password did not match the specified criteria. Please try again.")
     except:
-        print("SSN is already registered.")
-        messages.info(request, 'The ssn is already in use. !!')#message will be displayed if another employee has already registered with the same ssn.
+        messages.info(request, 'User with this ssn already exists.')#message will be displayed if another employee has already registered with the same ssn.
         return HttpResponseRedirect('/register')
     return render(request, 'EmployeeHome/register.html')
 
@@ -57,8 +56,8 @@ def login(request):
         else:
             return render(request,'EmployeeHome/login.html')
     except:
-        print("Invalid Credentials")
-        messages.info(request,"Invalid Credentials")
+        print("Invalid credentials")
+        messages.info(request,"Please enter valid credentials.")
         return HttpResponseRedirect('/login')
 
 # End of Function: Shrivyas, Sai
@@ -76,17 +75,24 @@ def list(request):
 #
 def update(request):
     if(request.method=="POST"):
+        current_name=request.POST.get('name')
+        current_dob=request.POST.get('dob')
         current_city=request.POST.get('current_city')
-        Employeedb.objects.filter(email=login_email).update(city=current_city)
+        if(current_name!=""):
+            Employeedb.objects.filter(email=login_email).update(name=current_name)
+        if(current_dob!=""):
+            Employeedb.objects.filter(email=login_email).update(dob=current_dob)
+        if(current_city!=""):
+            Employeedb.objects.filter(email=login_email).update(city=current_city)
+        # Employeedb.objects.filter(email=login_email).update(city=current_city)
         user2 = Employeedb.objects.get(email=login_email)
         ssn=user2.ssn
         email=user2.email
         name=user2.name
         dob=user2.dob
-
         city=user2.city
         context={"ssn":ssn, "name":name,"email":email,"dob":str(dob),"city":city}
-        messages.info(request,"Your current city has been updated")
+        messages.info(request,"Your details have been updated.")
         return render(request, 'EmployeeHome/list.html',context)
     return render(request,"EmployeeHome/update.html")
 
@@ -98,8 +104,8 @@ def update(request):
 def delete(request):
     if(request.method=="POST"):
         Employeedb.objects.filter(email=login_email).delete()
-        print("Account Deleted")
-        messages.info(request, 'Account Deleted')
+        print("Account deleted")
+        messages.info(request, 'User account has been deleted successfully.')
         return HttpResponseRedirect('/register')
     return render(request,"EmployeeHome/delete.html")
 

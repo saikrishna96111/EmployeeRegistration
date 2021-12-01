@@ -3,25 +3,20 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login Page</title>
+        <title>Update Page</title>
         <!--<link rel="stylesheet" href="static/EmployeeHome/css/bootstrap.min.css">-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
       </head>
       <style>
-        .alert {
-  padding: 20px;
-  background-color: #000000; /* Red */
-  color: rgb(255, 255, 255);
-  margin-bottom: 15px;
-}
-
+        
 .errorMessages {
+  width: 83%;
     display: none;
     list-style-type: disc;
-    margin: 0 130px 50px 0px;
-    justify-content: center;
+    margin: 0px 0px 0px 0px;
+    justify-content: left;
     color: #B94A48;
     background-color: #F2DEDE;
     border: 2px solid #EED3D7;
@@ -70,12 +65,7 @@ input:not(:focus) {
   padding: 0 10px;
   color: #3484f0;
 }
-.child1{
-                float:left; 
-                /* background:Red; */
-                width:25%;
-                height:280px;
-            }
+
           
             .child2{
                 float:right;
@@ -98,29 +88,9 @@ input:not(:focus) {
   pointer-events: none;
 }
 
-.alert {
-  padding: 20px;
-  background-color: #000000; /* Red */
-  color: rgb(255, 255, 255);
-  margin-bottom: 15px;
-}
 
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
 
-/* When moving the mouse over the close button */
-.closebtn:hover {
-  color: rgb(255, 254, 254);
-}
+
 
       body{
         /* background:rgb(8, 183, 226); */
@@ -136,16 +106,11 @@ background-size: 60% 50%;
         background: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ficon-icons.com%2Ficon%2Foracle-logo%2F145005&psig=AOvVaw0f2CCXXH3I82fonql2XpSj&ust=1637990922708000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCICLxOyltfQCFQAAAAAdAAAAABAJ"; */
       }
     
-    img{
-      justify-content: left;
-      padding-left: 100px;
-      padding-top: 200px;
-      width: 200%;
-    }
+   
     #push{
-            /* padding-left: 800px; */
+            padding-left: 80px;
             padding-top: 170px;
-            padding-right: 20px;
+            /* padding-right: 20px; */
             width: 30%;
       } 
       #but{
@@ -161,7 +126,7 @@ background-size: 60% 50%;
         justify-content: center;
           color:black;
           padding-top:20px;
-          padding-left: 20px;
+          padding-left: 40px;
           margin-bottom: 20px;
       }
       small{
@@ -173,19 +138,10 @@ background-size: 60% 50%;
 
 <body>
   
-    {% load static %}
-  {% if messages %}
-      {% for message in messages %}
-          <div class="alert">
-              {{ message }}
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            </div>
-      {% endfor %}
-  {% endif %}
-  <div class='parent'>
-    <div class="child1"><img src="/static/img/oracle4.jpeg" alt="image"></div>
+    
+   
 
-    <div id="push" class="child2  ">
+    <div id="push" class="container">
   
 
   
@@ -193,31 +149,35 @@ background-size: 60% 50%;
   <!-- d-flex align-items-center justify-content-center fixed-middle vcenter-item wrapper -->
   
     
-    <h2>Login Page</h2>
+    <h2>Update Page</h2>
       <form id="myform" class="myform" name="myform" method="POST">
       
         {% csrf_token %}
 <ul class="errorMessages"></ul>
   
+<div class="form-control">
+  <input required type="text" title="Please enter Current City" name="name" id="name"/>
+  <label>Enter Name</label>
+   <!-- <div class="border-around"></div>  -->
+</div>
   
-  
+<div class="form-control">
+  <input required type="dob" title="Please enter DOB" name="dob" id="dob"/>
+  <label>Enter DOB</label>
+   <!-- <div class="border-around"></div>  -->
+</div>
 
   <div class="form-control">
-    <input required type="email" title="Please enter valid email id" name="email" id="email"/>
-    <label>Enter Email</label>
+    <input required type="text" title="Please enter Current City" name="city" id="city"/>
+    <label>Enter City</label>
      <!-- <div class="border-around"></div>  -->
   </div>
 
-  <div class="form-control">
-    <input required type="password" name="password"  title="Please Enter Valid Password" id="password"/>
-    <label>Enter Password</label>
-     <!-- <div class="border-around"></div>  -->
-  </div> 
+  
 
-  <button id="but" name="submit" class="btn btn-primary" type="submit">Login</button><br><br>
+  <button id="but" name="submit" class="btn btn-primary" type="submit">Update</button><br><br>
 
-  <small style="color:black">Not registered?</small>
-    <a href="http://127.0.0.1:8000/register/">Register</a><br><br><br><br><br>
+  
 
 </form>
 
@@ -245,7 +205,7 @@ background-size: 60% 50%;
 });
 
 </script>
-</div>
+
 </div>
 
 

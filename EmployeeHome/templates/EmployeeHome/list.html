@@ -26,6 +26,9 @@
   cursor: pointer;
   transition: 0.3s;
 }
+/* .row{
+    padding-left: 50px;
+} */
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
@@ -36,14 +39,16 @@
         }
         #push{
           padding-top: 80px;
-          padding-left: 600px;
+          text-align: center;
+          /* padding-left: 600px; */
           font-size: larger;
         }
         label{
-        color: white;
+        color: black;
     }
         body{
-            background: url("/static/img/oracle.jpg") no-repeat;
+        
+            /* background: url("/static/img/oracle.jpg") no-repeat; */
           /* Full height */
   height: 100%;
 
@@ -53,8 +58,9 @@ background-repeat: no-repeat;
 background-size: 100% 100%;
       }
       h1{
-          text-align: center;
-          color:white;
+          margin-top: 10 px;
+          /* text-align: left; */
+          color: black;
       }
     </style>
     <script>
@@ -77,9 +83,10 @@ background-size: 100% 100%;
         {% endfor %}
     {% endif %}
     
-    <h1>Personal Information</h1>
         <div id="push">
-            <br><br><br><br>
+            
+            <h1>Personal Information</h1>
+            <br>
             <div class="row">
                 <label class="col-xs-12 col-md-12" name="ssn">SSN : {{ssn}}</label><br>
             </div>
@@ -99,15 +106,16 @@ background-size: 100% 100%;
         <div class="row">
         <label class="col-xs-12 col-md-12" name="city">City : {{city}}</label><br>
     </div>
+    <br>
 
-    <button class="btn btn-primary" type="submit" name="update" onclick=testfunc()>Update</button>
-    
+    <!-- <button class="btn btn-primary" type="submit" name="update" onclick=testfunc()>Update</button> -->
+    <a class="btn btn-primary" href="http://127.0.0.1:8000/login/update/">Update</a>
     <!-- <button class="btn btn-primary" type="submit" name="delete" onclick=testfunc2()>Delete</button> -->
     <a class="btn btn-primary" href="http://127.0.0.1:8000/login/delete/">Delete</a>
     <a class="btn btn-primary" href="http://127.0.0.1:8000/login/">Logout</a>
     <!-- <button type="submit" name="logout" href="http://127.0.0.1:8000/register/">Log Out</button>
      -->
-     <br><br><br><br><br><br><br><br><br><br><br><br><br>
+     
     </div>
     </div>
 

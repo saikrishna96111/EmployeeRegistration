@@ -9,3 +9,6 @@ class Employeedb(models.Model):
     password=models.CharField(max_length=100,null=True)
     dob=models.DateField(null=True)
     city=models.CharField(max_length=100,null=True)
+    
+    def __str__(self):
+        return self.name
