@@ -10,24 +10,35 @@ from .serializers import ListSerializer
 import EmployeeHome
 import re
 
+#Class added by : Shrivyas, Sai
+#
 class ListIndividualView(APIView):
+
+    #Function to get the details of one employee using SSN.
     def get_object(self,ssn):
         try:
             return Employeedb.objects.get(ssn=ssn)
         except Employeedb.DoesNotExist:
             raise Http404
 
+    
     def get(self, request, ssn, format=None):
         snippet = self.get_object(ssn)
         serializer = ListSerializer(snippet)
         return Response(serializer.data)
 
+# End of Class: Shrivyas, Sai
+
+
 class ListView(APIView):
+
+    #Function to get the details of all employees.
     def get(self, request):
         list = Employeedb.objects.all()
         serializer = ListSerializer(list, many=True)
         return Response({"list": serializer.data})
    
+   #Function to register an employee.
     def post(self, request):
         employee = request.data.get('employee')
         # Create an article from the above data
@@ -36,6 +47,7 @@ class ListView(APIView):
             employee_saved = serializer.save()
         return Response({"success": "Employee '{}' registered successfully".format(employee_saved.name)})
 
+    #Function to update details of an employee.
     def put(self, request, ssn):
         saved_employee = get_object_or_404(Employeedb.objects.all(), ssn=ssn)
         data = request.data.get('employee')
@@ -44,12 +56,15 @@ class ListView(APIView):
             employee_saved = serializer.save()
         return Response({"success": "Employee '{}' updated successfully".format(employee_saved.name)})
 
+    #Function to delete an employee.
     def delete(self, request, ssn):
     # Get object with this pk
         saved_employee = get_object_or_404(Employeedb.objects.all(), ssn=ssn)
         name=saved_employee.name
         saved_employee.delete()
         return Response({"message": "Employee with name `{}` has been deleted.".format(name)},status=204)
+
+# End of Function: Shrivyas, Sai
 
 
 #Function added by : Shrivyas, Sai
