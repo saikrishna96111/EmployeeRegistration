@@ -1,9 +1,57 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponseRedirect,response
 from .models import Employeedb
 from django.contrib import messages
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import ListSerializer
+
 import EmployeeHome
 import re
+
+class ListIndividualView(APIView):
+    def get_object(self,ssn):
+        try:
+            return Employeedb.objects.get(ssn=ssn)
+        except Employeedb.DoesNotExist:
+            raise Http404
+
+    def get(self, request, ssn, format=None):
+        snippet = self.get_object(ssn)
+        serializer = ListSerializer(snippet)
+        return Response(serializer.data)
+
+class ListView(APIView):
+    def get(self, request):
+        list = Employeedb.objects.all()
+        serializer = ListSerializer(list, many=True)
+        return Response({"list": serializer.data})
+   
+    def post(self, request):
+        employee = request.data.get('employee')
+        # Create an article from the above data
+        serializer = ListSerializer(data=employee)
+        if serializer.is_valid(raise_exception=True):
+            employee_saved = serializer.save()
+        return Response({"success": "Employee '{}' registered successfully".format(employee_saved.name)})
+
+    def put(self, request, ssn):
+        saved_employee = get_object_or_404(Employeedb.objects.all(), ssn=ssn)
+        data = request.data.get('employee')
+        serializer = ListSerializer(instance=saved_employee, data=data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            employee_saved = serializer.save()
+        return Response({"success": "Employee '{}' updated successfully".format(employee_saved.name)})
+
+    def delete(self, request, ssn):
+    # Get object with this pk
+        saved_employee = get_object_or_404(Employeedb.objects.all(), ssn=ssn)
+        name=saved_employee.name
+        saved_employee.delete()
+        return Response({"message": "Employee with name `{}` has been deleted.".format(name)},status=204)
+
+
 #Function added by : Shrivyas, Sai
 #Function To register the employee after the data is entered.
 #
