@@ -112,7 +112,7 @@ def login(request):
                 login_email=email
                 name=login_user.name
                 dob=login_user.dob
-                print(str(dob))
+                # print(str(dob))
                 city=login_user.city
                 context={"ssn":ssn, "name":name,"email":email,"dob":str(dob),"city":city}
                 return render(request, 'EmployeeHome/list.html',context)#details will be shown to the employees.
@@ -155,7 +155,7 @@ def update(request):
         dob=user2.dob
         city=user2.city
         context={"ssn":ssn, "name":name,"email":email,"dob":str(dob),"city":city}
-        messages.info(request,"Your details have been updated.")
+        # messages.info(request,"Your details have been updated.")
         return render(request, 'EmployeeHome/list.html',context)
     return render(request,"EmployeeHome/update.html")
 
